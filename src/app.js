@@ -2,9 +2,9 @@ const log = require('simple-node-logger').createSimpleLogger();
 const http = require('http');
 const httpProxy = require('http-proxy');
 
-var port = '7000'
-var defaultHost = 'http://localhost:5050';
-var alternativeHost = 'http://www.ansa.it:80';
+var port = '8000'
+var defaultHost = 'http://localhost:8001';
+var alternativeHost = 'http://localhost:8002';
 var alternativeJsonKey = 'device';
 var alternativeJsonValue = 'fbk';
 
@@ -31,7 +31,14 @@ if (process.env.ALTERNATIVE_JSON_VALUE) {
 log.info('=================');
 log.info('Smart Proxy 0.1.0');
 log.info('=================');
+log.info('PORT: ' + port);
+log.info('DEFAULT_HOST: ' + defaultHost);
+log.info('ALTERNATIVE_HOST: ' + alternativeHost);
+log.info('ALTERNATIVE_JSON_KEY: ' + alternativeJsonKey);
+log.info('ALTERNATIVE_JSON_VALUE: ' + alternativeJsonValue);
+log.info('---');
 log.info('Listening on port ' + port);
+log.info('---');
 
 const proxy = httpProxy.createProxyServer({
     preserveHeaderKeyCase: true
@@ -55,9 +62,6 @@ proxy.on('error', function (err, req, res, target) {
         smartProxyError: err
     }));
 });
-
-log.info('default host: ' + defaultHost);
-log.info('alternative host: ' + alternativeHost);
 
 const server = http.createServer(function(req, res) {
 
