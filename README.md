@@ -1,6 +1,6 @@
 # Smart-Proxy
 
-A simple nodejs proxy based on node-http-proxy that routes requests based on json content.
+A simple nodejs proxy that routes requests based on json content.
 
 ## Description
 
